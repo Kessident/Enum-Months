@@ -1,5 +1,10 @@
 package com.example.common;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,9 +43,14 @@ public class Main {
                     System.out.print(chosenMonthAndAfter.get(i).getEnglishName() + ", ");
                 }
             }
-
         }
-
+        
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.writeValue(new File("May.json"), Month.MAY);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static int convertToEnumOrdinal(String month) {
